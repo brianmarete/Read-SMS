@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
+    // Static variable equivalent
     companion object {
         val MY_PERMISSIONS_REQUEST_RECEIVE_SMS = 1
     }
@@ -26,7 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS)
             != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
+                ActivityCompat.requestPermissions(
+                    this,
                     arrayOf(Manifest.permission.RECEIVE_SMS),
                     MY_PERMISSIONS_REQUEST_RECEIVE_SMS)
         } else {
@@ -49,9 +51,6 @@ class MainActivity : AppCompatActivity() {
                 if ((grantResults.isNotEmpty() && grantResults[0]
                             == PackageManager.PERMISSION_GRANTED)) {
                     this.registerReceiver(smsReceiver, filter)
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
                 }
                 return
             }
